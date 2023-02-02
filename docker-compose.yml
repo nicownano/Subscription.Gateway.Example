@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  subscription.gateway:
+    image: ${DOCKER_REGISTRY-}subscriptiongateway
+    build:
+      context: .
+      dockerfile: Subscription.Gateway/Dockerfile
+    ports:
+        - 80:80
+  redis:
+    image: redis:alpine
+    ports:
+        - 6379:6379
+  webapplication1:
+    image: ${DOCKER_REGISTRY-}webapplication1
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+    ports:
+        - 8083:80
+
